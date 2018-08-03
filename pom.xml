@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>commons-encoding</groupId>
+	<artifactId>commons-encoding</artifactId>
+	<version>1.0.0</version>
+	<name>commons-encoding</name>
+	<description>commons-encoding</description>
+	
+	<repositories>
+		<repository>
+			<id>bincool-maven-repository</id>
+			<name>bincool-maven-repository</name>
+			<url>https://raw.githubusercontent.com/bincool/maven-repository/master/</url>
+		</repository>
+	</repositories>
+	
+	<properties>
+		<!-- junit版本号 -->
+		<junit.version>4.11</junit.version>
+		<!-- log4j版本号 -->
+		<log4j.version>1.2.17</log4j.version>
+		<!-- cpdetector版本号 -->
+		<cpdetector.version>1.0.10</cpdetector.version>
+		<!-- cpdetector版本号 -->
+		<antlr.version>2.7.4</antlr.version>
+		<!-- cpdetector版本号 -->
+		<chardet.version>1.0</chardet.version>
+		<!-- cpdetector版本号 -->
+		<jargs.version>1.0</jargs.version>
+	</properties>
+	
+	<dependencies>
+		<!-- junit工具包 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<!-- 表示开发的时候引入，发布的时候不会加载此包 -->
+			<!-- <scope>test</scope> -->
+		</dependency>
+
+		<!-- log4j工具包 -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		
+		<!-- cpdetector-begin -->
+		<dependency>
+			<groupId>io.github.encoding-detect</groupId>
+			<artifactId>cpdetector</artifactId>
+			<version>${cpdetector.version}</version>
+		</dependency>
+		<!-- cpdetector依赖包antlr -->
+		<dependency>
+			<groupId>io.github.encoding-detect</groupId>
+			<artifactId>antlr</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		<!-- cpdetector依赖包chardet -->
+		<dependency>
+			<groupId>io.github.encoding-detect</groupId>
+			<artifactId>chardet</artifactId>
+			<version>${chardet.version}</version>
+		</dependency>
+		<!-- cpdetector依赖包jargs -->
+		<dependency>
+			<groupId>io.github.encoding-detect</groupId>
+			<artifactId>jargs</artifactId>
+			<version>${jargs.version}</version>
+		</dependency>
+		<!-- cpdetector-end -->
+	</dependencies>
+	
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Class-Path>.</Class-Path>
+						</manifestEntries>
+					</archive>
+					<excludes>
+						<exclude>io/github/bincool/test/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

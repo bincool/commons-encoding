@@ -1,0 +1,1 @@
+ io/github/bincool/encodingdetect :r$src\io\github\bincool\encodingdetect

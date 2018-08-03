@@ -1,0 +1,249 @@
+/**
+* @FileName: EncodingDetect.java
+* @Package: io.github.bincool.encodingdetect
+* @Copyright: 2018 bincool.github.io Inc. All Rights Reserved.
+* @Description: EncodingDetect.java: ±àÂë¼ì²â.
+* @Author wchy£¬¼¼Êõ½»Á÷(891946049).
+* @Date 2018Äê8ÔÂ2ÈÕ ÏÂÎç9:16:23.
+* @Content: ÐÂÔö.
+* @Version: V1.0.
+*/
+package io.github.bincool.encodingdetect;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+import info.monitorenter.cpdetector.io.ASCIIDetector;
+import info.monitorenter.cpdetector.io.ByteOrderMarkDetector;
+import info.monitorenter.cpdetector.io.CodepageDetectorProxy;
+import info.monitorenter.cpdetector.io.JChardetFacade;
+import info.monitorenter.cpdetector.io.ParsingDetector;
+import info.monitorenter.cpdetector.io.UnicodeDetector;
+
+/**
+* @ClassName: EncodingDetect.java
+* 
+* @Description: 
+* <p>
+* ±àÂë¼ì²â.
+* </p>
+* <p>
+* ÏêÏ¸ÃèÊö.
+* </p>
+* <p>
+* Ê¾Àý´úÂë.
+* </p>
+*
+* @Author: wchy£¬¼¼Êõ½»Á÷(891946049).
+* 
+* @Date: 2018Äê8ÔÂ2ÈÕ ÏÂÎç9:16:23.
+* 
+*/
+public class EncodingDetect 
+{
+	
+	/**
+	 * ×î´ó¶ÁÈ¡×Ö½Ú:8.1<<8ÊÇ×óÒÆ£¬Öµ»á·Å´ó256±¶£¬×ó±ß²¹8¸ö0.
+	 */
+	private static final int MAX_READBYTE_FAST = 256;
+
+	/**
+	 * Ë½ÓÐ¹¹Ôìº¯Êý.
+	 */
+	private EncodingDetect() 
+	{
+		throw new IllegalStateException("Utility class");
+	}
+	
+	/**
+	 * Ê¹ÓÃ¿ìËÙ²ßÂÔ¼ì²âÊäÈëÁ÷±àÂë£¬×î¶àÉ¨Ãè¼ì²â8¸ö×Ö½Ú.
+	 * @param buffIn
+	 * 		ÊäÈëÁ÷.InputStream buffIn = new BufferedInputStream(fInputStream);
+	 * @return
+	 * @throws IOException
+	 */
+	public static Charset getEncoding(InputStream buffIn) throws IOException 
+	{
+		return detectEncoding(buffIn, MAX_READBYTE_FAST, EncodingDetectStrategy.FAST);
+	}
+	
+	/**
+	 * Ê¹ÓÃ¿ìËÙ²ßÂÔ¼ì²â×Ö½Ú±àÂë£¬×î¶àÉ¨Ãè¼ì²â8¸ö×Ö½Ú.
+	 * @param byteArr
+	 * 		×Ö½Ú.
+	 * @return
+	 * @throws IOException
+	 */
+	public static Charset getEncoding(byte[] byteArr) throws IOException 
+	{
+		return detectEncoding(byteArr, MAX_READBYTE_FAST, EncodingDetectStrategy.FAST);
+	}
+	
+	/**
+	 * ¼ì²âurl±àÂë.
+	 * @param url
+	 * 		url.
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public static Charset getEncoding(URL url) throws IOException 
+	{
+		CodepageDetectorProxy detector = getDetector(EncodingDetectStrategy.OTHER);
+		return detector.detectCodepage(url);
+	}
+	
+	/**
+	 * ¼ì²âÊäÈëÁ÷±àÂë,É¨Ãè¼ì²â´óÐ¡ÎªÊäÈëÁ÷¿ÉÓÃ´óÐ¡.
+	 * @param buffIn
+	 * 		ÊäÈëÁ÷.InputStream buffIn = new BufferedInputStream(fInputStream);
+	 * @param strategy
+	 * 		¼ì²â²ßÂÔ.
+	 * @return
+	 * @throws IOException
+	 */
+	public static Charset getEncoding(InputStream buffIn, EncodingDetectStrategy strategy) throws IOException 
+	{
+		return detectEncoding(buffIn, buffIn.available(), strategy);
+	}
+	
+	/**
+	 * ¼ì²â×Ö½Ú±àÂë,É¨Ãè¼ì²â´óÐ¡Îª×Ö½Ú¿ÉÓÃ´óÐ¡.
+	 * @param byteArr
+	 * 		×Ö½Ú.
+	 * @param strategy
+	 * 		¼ì²â²ßÂÔ.
+	 * @return
+	 * @throws IOException
+	 */
+	public static Charset getEncoding(byte[] byteArr, EncodingDetectStrategy strategy) throws IOException 
+	{
+		return detectEncoding(byteArr, byteArr.length, strategy);
+	}
+	
+	/**
+	 * ¼ì²âÊäÈëÁ÷±àÂë.
+	 * @param in
+	 * 		ÊäÈëÁ÷.
+	 * @param size
+	 * 		´óÐ¡.
+	 * @param strategy
+	 * 		±àÂë¼ì²â²ßÂÔ.
+	 * @return
+	 * @throws IOException
+	 */
+	private static Charset detectEncoding(InputStream buffIn, int size, EncodingDetectStrategy strategy) throws IOException
+	{
+		Charset charset = null;
+		size = getSmaller(size, buffIn.available());
+		
+		// if in support mark method, 
+		if(buffIn.markSupported()) 
+		{
+			if(EncodingDetectStrategy.isFast(strategy)) 
+			{
+				size = getSmaller(size, MAX_READBYTE_FAST);
+				buffIn.mark(size++);
+			} 
+			else 
+			{
+				buffIn.mark(size++);
+			}
+			
+			charset = getDetector(strategy).detectCodepage(buffIn, size);
+			buffIn.reset();
+		} 
+		else 
+		{
+			if(EncodingDetectStrategy.isFast(strategy)) 
+			{
+				size = getSmaller(size, MAX_READBYTE_FAST);
+			}
+			charset = getDetector(strategy).detectCodepage(buffIn, size);
+		}
+		
+	    return charset;
+	}
+	
+	/**
+	 * ¼ì²â×Ö½Ú±àÂë.
+	 * @param byteArr
+	 * 		×Ö½Ú.
+	 * @param size
+	 * 		´óÐ¡.
+	 * @param strategy
+	 * 		±àÂë¼ì²â²ßÂÔ.
+	 * @return
+	 * @throws IllegalArgumentException
+	 * @throws IOException
+	 */
+	private static Charset detectEncoding(byte[] byteArr, int size, EncodingDetectStrategy strategy) throws IOException 
+	{
+		size = getSmaller(size, byteArr.length);
+		if (EncodingDetectStrategy.isFast(strategy)) 
+		{
+			size = getSmaller(size, MAX_READBYTE_FAST);
+		} 
+		
+		InputStream bais = new ByteArrayInputStream(byteArr, 0, size);
+		InputStream bis = new BufferedInputStream(bais);
+		return getDetector(strategy).detectCodepage(bis, size);
+	}
+	
+	/**
+	 * <pre> 
+	 * 1¡¢cpDetectorÄÚÖÃÁËÒ»Ð©³£ÓÃµÄÌ½²âÊµÏÖÀà,ÕâÐ©Ì½²âÊµÏÖÀàµÄÊµÀý¿ÉÒÔÍ¨¹ýadd·½·¨¼Ó½øÀ´, 
+	 * Èç:ParsingDetector¡¢ JChardetFacade¡¢ASCIIDetector¡¢UnicodeDetector.  
+	 * 2¡¢detector°´ÕÕ¡°Ë­×îÏÈ·µ»Ø·Ç¿ÕµÄÌ½²â½á¹û,¾ÍÒÔ¸Ã½á¹ûÎª×¼¡±µÄÔ­Ôò.  
+	 * 3¡¢cpDetectorÊÇ»ùÓÚÍ³¼ÆÑ§Ô­ÀíµÄ,²»±£Ö¤ÍêÈ«ÕýÈ·. 
+	 * </pre>
+	 * @param isFast
+	 * 		¼ì²â²ßÂÔ:true±íÊ¾¿ìËÙ¼ì²â£¬false±íÊ¾Õý³£¼ì²â.
+	 * @return
+	 */
+	private static CodepageDetectorProxy getDetector(EncodingDetectStrategy strategy) 
+	{
+		CodepageDetectorProxy detector = CodepageDetectorProxy.getInstance();
+		
+		
+		detector.add(new ByteOrderMarkDetector());
+		// ÄÚ²¿ÒýÓÃÁËchardet.jar.
+		detector.add(JChardetFacade.getInstance());
+		detector.add(ASCIIDetector.getInstance());
+		
+		if (EncodingDetectStrategy.isFast(strategy)) 
+		{
+			detector.add(UnicodeDetector.getInstance());
+		} 
+		else if (EncodingDetectStrategy.isNormal(strategy)) 
+		{
+			detector.add(new ParsingDetector(false));
+		}
+		else 
+		{
+			detector.add(new ParsingDetector(false));
+			detector.add(UnicodeDetector.getInstance());
+		}
+		
+		return detector;
+	}
+	
+	/**
+	 * È¡aºÍbÖÐµÄ½ÏÐ¡Öµ.
+	 * @param a
+	 * 		ÕûÊý.
+	 * @param b
+	 * 		ÕûÊý.
+	 * @return
+	 */
+	private static int getSmaller(int a, int b) 
+	{
+		return a < b ? a : b;
+	}
+	
+}

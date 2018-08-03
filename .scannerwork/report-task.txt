@@ -1,0 +1,6 @@
+projectKey=commons-encoding
+serverUrl=http://localhost:9000/sonar
+serverVersion=7.2.1.14109
+dashboardUrl=http://localhost:9000/sonar/dashboard?id=commons-encoding
+ceTaskId=AWT-hcKj47aL6kA9Ulx2
+ceTaskUrl=http://localhost:9000/sonar/api/ce/task?id=AWT-hcKj47aL6kA9Ulx2

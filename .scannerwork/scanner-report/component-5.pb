@@ -1,0 +1,1 @@
+4io/github/bincool/encodingdetect/EncodingDetect.java 2javaXúhr8src/io/github/bincool/encodingdetect/EncodingDetect.java
