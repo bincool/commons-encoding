@@ -2,10 +2,10 @@
 * @FileName: EncodingDetect.java
 * @Package: io.github.bincool.encodingdetect
 * @Copyright: 2018 bincool.github.io Inc. All Rights Reserved.
-* @Description: EncodingDetect.java: ±àÂë¼ì²â.
-* @Author wchy£¬¼¼Êõ½»Á÷(891946049).
-* @Date 2018Äê8ÔÂ2ÈÕ ÏÂÎç9:16:23.
-* @Content: ĞÂÔö.
+* @Description: EncodingDetect.java: ç¼–ç æ£€æµ‹.
+* @Author wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
+* @Date 2018å¹´8æœˆ2æ—¥ ä¸‹åˆ9:16:23.
+* @Content: æ–°å¢.
 * @Version: V1.0.
 */
 package io.github.bincool.encodingdetect;
@@ -30,30 +30,30 @@ import info.monitorenter.cpdetector.io.UnicodeDetector;
 * 
 * @Description: 
 * <p>
-* ±àÂë¼ì²â.
+* ç¼–ç æ£€æµ‹.
 * </p>
 * <p>
-* ÏêÏ¸ÃèÊö.
+* è¯¦ç»†æè¿°.
 * </p>
 * <p>
-* Ê¾Àı´úÂë.
+* ç¤ºä¾‹ä»£ç .
 * </p>
 *
-* @Author: wchy£¬¼¼Êõ½»Á÷(891946049).
+* @Author: wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
 * 
-* @Date: 2018Äê8ÔÂ2ÈÕ ÏÂÎç9:16:23.
+* @Date: 2018å¹´8æœˆ2æ—¥ ä¸‹åˆ9:16:23.
 * 
 */
 public class EncodingDetect 
 {
 	
 	/**
-	 * ×î´ó¶ÁÈ¡×Ö½Ú:8.1<<8ÊÇ×óÒÆ£¬Öµ»á·Å´ó256±¶£¬×ó±ß²¹8¸ö0.
+	 * æœ€å¤§è¯»å–å­—èŠ‚:8.1<<8æ˜¯å·¦ç§»ï¼Œå€¼ä¼šæ”¾å¤§256å€ï¼Œå·¦è¾¹è¡¥8ä¸ª0.
 	 */
 	private static final int MAX_READBYTE_FAST = 256;
 
 	/**
-	 * Ë½ÓĞ¹¹Ôìº¯Êı.
+	 * ç§æœ‰æ„é€ å‡½æ•°.
 	 */
 	private EncodingDetect() 
 	{
@@ -61,9 +61,9 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * Ê¹ÓÃ¿ìËÙ²ßÂÔ¼ì²âÊäÈëÁ÷±àÂë£¬×î¶àÉ¨Ãè¼ì²â8¸ö×Ö½Ú.
+	 * ä½¿ç”¨å¿«é€Ÿç­–ç•¥æ£€æµ‹è¾“å…¥æµç¼–ç ï¼Œæœ€å¤šæ‰«ææ£€æµ‹8ä¸ªå­—èŠ‚.
 	 * @param buffIn
-	 * 		ÊäÈëÁ÷.InputStream buffIn = new BufferedInputStream(fInputStream);
+	 * 		è¾“å…¥æµ.InputStream buffIn = new BufferedInputStream(fInputStream);
 	 * @return
 	 * @throws IOException
 	 */
@@ -73,9 +73,9 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * Ê¹ÓÃ¿ìËÙ²ßÂÔ¼ì²â×Ö½Ú±àÂë£¬×î¶àÉ¨Ãè¼ì²â8¸ö×Ö½Ú.
+	 * ä½¿ç”¨å¿«é€Ÿç­–ç•¥æ£€æµ‹å­—èŠ‚ç¼–ç ï¼Œæœ€å¤šæ‰«ææ£€æµ‹8ä¸ªå­—èŠ‚.
 	 * @param byteArr
-	 * 		×Ö½Ú.
+	 * 		å­—èŠ‚.
 	 * @return
 	 * @throws IOException
 	 */
@@ -85,7 +85,7 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * ¼ì²âurl±àÂë.
+	 * æ£€æµ‹urlç¼–ç .
 	 * @param url
 	 * 		url.
 	 * @return
@@ -99,11 +99,11 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * ¼ì²âÊäÈëÁ÷±àÂë,É¨Ãè¼ì²â´óĞ¡ÎªÊäÈëÁ÷¿ÉÓÃ´óĞ¡.
+	 * æ£€æµ‹è¾“å…¥æµç¼–ç ,æ‰«ææ£€æµ‹å¤§å°ä¸ºè¾“å…¥æµå¯ç”¨å¤§å°.
 	 * @param buffIn
-	 * 		ÊäÈëÁ÷.InputStream buffIn = new BufferedInputStream(fInputStream);
+	 * 		è¾“å…¥æµ.InputStream buffIn = new BufferedInputStream(fInputStream);
 	 * @param strategy
-	 * 		¼ì²â²ßÂÔ.
+	 * 		æ£€æµ‹ç­–ç•¥.
 	 * @return
 	 * @throws IOException
 	 */
@@ -113,11 +113,11 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * ¼ì²â×Ö½Ú±àÂë,É¨Ãè¼ì²â´óĞ¡Îª×Ö½Ú¿ÉÓÃ´óĞ¡.
+	 * æ£€æµ‹å­—èŠ‚ç¼–ç ,æ‰«ææ£€æµ‹å¤§å°ä¸ºå­—èŠ‚å¯ç”¨å¤§å°.
 	 * @param byteArr
-	 * 		×Ö½Ú.
+	 * 		å­—èŠ‚.
 	 * @param strategy
-	 * 		¼ì²â²ßÂÔ.
+	 * 		æ£€æµ‹ç­–ç•¥.
 	 * @return
 	 * @throws IOException
 	 */
@@ -127,13 +127,13 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * ¼ì²âÊäÈëÁ÷±àÂë.
+	 * æ£€æµ‹è¾“å…¥æµç¼–ç .
 	 * @param in
-	 * 		ÊäÈëÁ÷.
+	 * 		è¾“å…¥æµ.
 	 * @param size
-	 * 		´óĞ¡.
+	 * 		å¤§å°.
 	 * @param strategy
-	 * 		±àÂë¼ì²â²ßÂÔ.
+	 * 		ç¼–ç æ£€æµ‹ç­–ç•¥.
 	 * @return
 	 * @throws IOException
 	 */
@@ -171,13 +171,13 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * ¼ì²â×Ö½Ú±àÂë.
+	 * æ£€æµ‹å­—èŠ‚ç¼–ç .
 	 * @param byteArr
-	 * 		×Ö½Ú.
+	 * 		å­—èŠ‚.
 	 * @param size
-	 * 		´óĞ¡.
+	 * 		å¤§å°.
 	 * @param strategy
-	 * 		±àÂë¼ì²â²ßÂÔ.
+	 * 		ç¼–ç æ£€æµ‹ç­–ç•¥.
 	 * @return
 	 * @throws IllegalArgumentException
 	 * @throws IOException
@@ -197,13 +197,13 @@ public class EncodingDetect
 	
 	/**
 	 * <pre> 
-	 * 1¡¢cpDetectorÄÚÖÃÁËÒ»Ğ©³£ÓÃµÄÌ½²âÊµÏÖÀà,ÕâĞ©Ì½²âÊµÏÖÀàµÄÊµÀı¿ÉÒÔÍ¨¹ıadd·½·¨¼Ó½øÀ´, 
-	 * Èç:ParsingDetector¡¢ JChardetFacade¡¢ASCIIDetector¡¢UnicodeDetector.  
-	 * 2¡¢detector°´ÕÕ¡°Ë­×îÏÈ·µ»Ø·Ç¿ÕµÄÌ½²â½á¹û,¾ÍÒÔ¸Ã½á¹ûÎª×¼¡±µÄÔ­Ôò.  
-	 * 3¡¢cpDetectorÊÇ»ùÓÚÍ³¼ÆÑ§Ô­ÀíµÄ,²»±£Ö¤ÍêÈ«ÕıÈ·. 
+	 * 1ã€cpDetectorå†…ç½®äº†ä¸€äº›å¸¸ç”¨çš„æ¢æµ‹å®ç°ç±»,è¿™äº›æ¢æµ‹å®ç°ç±»çš„å®ä¾‹å¯ä»¥é€šè¿‡addæ–¹æ³•åŠ è¿›æ¥, 
+	 * å¦‚:ParsingDetectorã€ JChardetFacadeã€ASCIIDetectorã€UnicodeDetector.  
+	 * 2ã€detectoræŒ‰ç…§â€œè°æœ€å…ˆè¿”å›éç©ºçš„æ¢æµ‹ç»“æœ,å°±ä»¥è¯¥ç»“æœä¸ºå‡†â€çš„åŸåˆ™.  
+	 * 3ã€cpDetectoræ˜¯åŸºäºç»Ÿè®¡å­¦åŸç†çš„,ä¸ä¿è¯å®Œå…¨æ­£ç¡®. 
 	 * </pre>
 	 * @param isFast
-	 * 		¼ì²â²ßÂÔ:true±íÊ¾¿ìËÙ¼ì²â£¬false±íÊ¾Õı³£¼ì²â.
+	 * 		æ£€æµ‹ç­–ç•¥:trueè¡¨ç¤ºå¿«é€Ÿæ£€æµ‹ï¼Œfalseè¡¨ç¤ºæ­£å¸¸æ£€æµ‹.
 	 * @return
 	 */
 	private static CodepageDetectorProxy getDetector(EncodingDetectStrategy strategy) 
@@ -212,7 +212,7 @@ public class EncodingDetect
 		
 		
 		detector.add(new ByteOrderMarkDetector());
-		// ÄÚ²¿ÒıÓÃÁËchardet.jar.
+		// å†…éƒ¨å¼•ç”¨äº†chardet.jar.
 		detector.add(JChardetFacade.getInstance());
 		detector.add(ASCIIDetector.getInstance());
 		
@@ -234,11 +234,11 @@ public class EncodingDetect
 	}
 	
 	/**
-	 * È¡aºÍbÖĞµÄ½ÏĞ¡Öµ.
+	 * å–aå’Œbä¸­çš„è¾ƒå°å€¼.
 	 * @param a
-	 * 		ÕûÊı.
+	 * 		æ•´æ•°.
 	 * @param b
-	 * 		ÕûÊı.
+	 * 		æ•´æ•°.
 	 * @return
 	 */
 	private static int getSmaller(int a, int b) 

@@ -2,10 +2,10 @@
 * @FileName: CharsetTest.java
 * @Package: io.github.bincool.test
 * @Copyright: 2018 bincool.github.io Inc. All Rights Reserved.
-* @Description: CharsetTest.java: ¿ÉÓÃ×Ö·û¼¯²âÊÔ.
-* @Author wchy£¬¼¼Êõ½»Á÷(891946049).
-* @Date 2018Äê8ÔÂ2ÈÕ ÏÂÎç8:17:22.
-* @Content: ĞÂÔö.
+* @Description: CharsetTest.java: å¯ç”¨å­—ç¬¦é›†æµ‹è¯•.
+* @Author wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
+* @Date 2018å¹´8æœˆ2æ—¥ ä¸‹åˆ8:17:22.
+* @Content: æ–°å¢.
 * @Version: V1.0.
 */
 package io.github.bincool.test;
@@ -20,13 +20,13 @@ import io.github.bincool.test.base.BaseTest;
 * 
 * @Description: 
 * <p>
-* ¿ÉÓÃ×Ö·û¼¯²âÊÔ.
+* å¯ç”¨å­—ç¬¦é›†æµ‹è¯•.
 * </p>
 * <p>
-* ÏêÏ¸ÃèÊö.
+* è¯¦ç»†æè¿°.
 * </p>
 * <p>
-* Ê¾Àı´úÂë:
+* ç¤ºä¾‹ä»£ç :
 * for (String value : charsets) 
 * {
 *     System.out.println(TEMPLATE_ANNOTATION.replace("{value}", value));
@@ -34,21 +34,21 @@ import io.github.bincool.test.base.BaseTest;
 * }.
 * </p>
 *
-* @Author: wchy£¬¼¼Êõ½»Á÷(891946049).
+* @Author: wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
 * 
-* @Date: 2018Äê8ÔÂ2ÈÕ ÏÂÎç8:17:22.
+* @Date: 2018å¹´8æœˆ2æ—¥ ä¸‹åˆ8:17:22.
 * 
 */
 public class CharsetTest extends BaseTest 
 {
 	
 	/**
-	 * ×¢ÊÍÄ£°æ.
+	 * æ³¨é‡Šæ¨¡ç‰ˆ.
 	 */
-	private static final String TEMPLATE_ANNOTATION = "	\r\n	/**\r\n	 * ×Ö·û¼¯±àÂë:{value}.\r\n	 */";
+	private static final String TEMPLATE_ANNOTATION = "	\r\n	/**\r\n	 * å­—ç¬¦é›†ç¼–ç :{value}.\r\n	 */";
 
 	/**
-	 * ´úÂëÄ£°æ.
+	 * ä»£ç æ¨¡ç‰ˆ.
 	 */
 	private static final String TEMPLATE_CODE = "	public static final String {variable} = \"{value}\";";
 	
@@ -76,16 +76,17 @@ public class CharsetTest extends BaseTest
 	@Override
 	public void test() throws Exception 
 	{
-		// »ñµÃJavaÖ§³Ö±àÂë¼¯ºÏ£º
-	    Set<String> charsets = Charset.availableCharsets().keySet();
-	    LOGGER.info(charsets);
-	    
-	    // »ñµÃÏµÍ³Ä¬ÈÏ±àÂë£º
-	    Charset charset = Charset.defaultCharset();
-	    LOGGER.info(charset);
-	    
-	    LOGGER.info(TEMPLATE_ANNOTATION);
-    	LOGGER.info(TEMPLATE_CODE);
+		// è·å¾—Javaæ”¯æŒç¼–ç é›†åˆï¼š
+		Set<String> charsets = Charset.availableCharsets().keySet();
+		LOGGER.info(charsets);
+
+		// è·å¾—ç³»ç»Ÿé»˜è®¤ç¼–ç ï¼š
+		Charset charset = Charset.defaultCharset();
+		LOGGER.info(charset);
+
+		LOGGER.info(TEMPLATE_ANNOTATION);
+
+		LOGGER.info(TEMPLATE_CODE);
 	}
 
 }

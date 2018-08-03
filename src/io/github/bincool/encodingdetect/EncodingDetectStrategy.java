@@ -2,10 +2,10 @@
 * @FileName: EncodingDetectStrategy.java
 * @Package: io.github.bincool.encodingdetect
 * @Copyright: 2018 bincool.github.io Inc. All Rights Reserved.
-* @Description: EncodingDetectStrategy.java: ±àÂë¼ì²â²ßÂÔ.
-* @Author wchy£¬¼¼Êõ½»Á÷(891946049).
-* @Date 2018Äê8ÔÂ3ÈÕ ÉÏÎç10:40:44.
-* @Content: ĞÂÔö.
+* @Description: EncodingDetectStrategy.java: ç¼–ç æ£€æµ‹ç­–ç•¥.
+* @Author wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
+* @Date 2018å¹´8æœˆ3æ—¥ ä¸Šåˆ10:40:44.
+* @Content: æ–°å¢.
 * @Version: V1.0.
 */
 package io.github.bincool.encodingdetect;
@@ -15,76 +15,76 @@ package io.github.bincool.encodingdetect;
 * 
 * @Description: 
 * <p>
-* ±àÂë¼ì²â²ßÂÔ.
+* ç¼–ç æ£€æµ‹ç­–ç•¥.
 * </p>
 * <p>
-* ÏêÏ¸ÃèÊö.
+* è¯¦ç»†æè¿°.
 * </p>
 * <p>
-* Ê¾Àı´úÂë.
+* ç¤ºä¾‹ä»£ç .
 * </p>
 *
-* @Author: wchy£¬¼¼Êõ½»Á÷(891946049).
+* @Author: wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
 * 
-* @Date: 2018Äê8ÔÂ3ÈÕ ÉÏÎç10:40:44.
+* @Date: 2018å¹´8æœˆ3æ—¥ ä¸Šåˆ10:40:44.
 * 
 */
 public class EncodingDetectStrategy 
 {
-	
+
 	/**
-	 * Ë½ÓĞ¹¹Ôìº¯Êı.
+	 * ç§æœ‰æ„é€ å‡½æ•°.
 	 */
 	private EncodingDetectStrategy() 
 	{
 	}
-	
+
 	/**
-     * ±àÂë¼ì²â²ßÂÔ:¿ìËÙFast.
-     */
-    public static final EncodingDetectStrategy FAST = new EncodingDetectStrategy();
-    
-    /**
-     * ±àÂë¼ì²â²ßÂÔ:Õı³£Normal.
-     */
-    public static final EncodingDetectStrategy NORMAL = new EncodingDetectStrategy();
-    
-    /**
-     * ±àÂë¼ì²â²ßÂÔ:ÆäËûOther.
-     */
-    public static final EncodingDetectStrategy OTHER = new EncodingDetectStrategy();
-    
-    /**
-     * ÅĞ¶Ï±àÂë¼ì²â²ßÂÔÊÇ·ñÎª¿ìËÙ.
-     * @param strategy
-     * 		±àÂë¼ì²â²ßÂÔ.
-     * @return
-     */
-    public static final boolean isFast(EncodingDetectStrategy strategy) 
+	 * ç¼–ç æ£€æµ‹ç­–ç•¥:å¿«é€ŸFast.
+	 */
+	public static final EncodingDetectStrategy FAST = new EncodingDetectStrategy();
+
+	/**
+	 * ç¼–ç æ£€æµ‹ç­–ç•¥:æ­£å¸¸Normal.
+	 */
+	public static final EncodingDetectStrategy NORMAL = new EncodingDetectStrategy();
+
+	/**
+	 * ç¼–ç æ£€æµ‹ç­–ç•¥:å…¶ä»–Other.
+	 */
+	public static final EncodingDetectStrategy OTHER = new EncodingDetectStrategy();
+
+	/**
+	 * åˆ¤æ–­ç¼–ç æ£€æµ‹ç­–ç•¥æ˜¯å¦ä¸ºå¿«é€Ÿ.
+	 * @param strategy
+	 * 		ç¼–ç æ£€æµ‹ç­–ç•¥.
+	 * @return
+	 */
+	public static final boolean isFast(EncodingDetectStrategy strategy) 
 	{
 		return strategy.equals(EncodingDetectStrategy.FAST);
 	}
-	
-    /**
-     * ÅĞ¶Ï±àÂë¼ì²â²ßÂÔÊÇ·ñÎªÕı³£.
-     * @param strategy
-     * 		±àÂë¼ì²â²ßÂÔ.
-     * @return
-     */
-    public static final boolean isNormal(EncodingDetectStrategy strategy) 
+
+	/**
+	 * åˆ¤æ–­ç¼–ç æ£€æµ‹ç­–ç•¥æ˜¯å¦ä¸ºæ­£å¸¸.
+	 * @param strategy
+	 * 		ç¼–ç æ£€æµ‹ç­–ç•¥.
+	 * @return
+	 */
+	public static final boolean isNormal(EncodingDetectStrategy strategy) 
 	{
 		return strategy.equals(EncodingDetectStrategy.NORMAL);
 	}
-    
-    /**
-     * ÅĞ¶Ï±àÂë¼ì²â²ßÂÔÊÇ·ñÎªÆäËü:·Ç¿ìËÙºÍÕı³£.
-     * @param strategy
-     * 		±àÂë¼ì²â²ßÂÔ.
-     * @return
-     */
-    public static final boolean isOther(EncodingDetectStrategy strategy) 
+
+	/**
+	 * åˆ¤æ–­ç¼–ç æ£€æµ‹ç­–ç•¥æ˜¯å¦ä¸ºå…¶å®ƒ:éå¿«é€Ÿå’Œæ­£å¸¸.
+	 * @param strategy
+	 * 		ç¼–ç æ£€æµ‹ç­–ç•¥.
+	 * @return
+	 */
+	public static final boolean isOther(EncodingDetectStrategy strategy) 
 	{
 		return null == strategy || strategy.equals(EncodingDetectStrategy.OTHER);
 	}
-	
+
 }

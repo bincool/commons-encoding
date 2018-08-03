@@ -2,10 +2,10 @@
 * @FileName: EncodingDetectTest.java
 * @Package: io.github.bincool.test
 * @Copyright: 2018 bincool.github.io Inc. All Rights Reserved.
-* @Description: EncodingDetectTest.java: ±àÂë¼ì²â²âÊÔÀà.
-* @Author wchy£¬¼¼Êõ½»Á÷(891946049).
-* @Date 2018Äê8ÔÂ3ÈÕ ÉÏÎç11:49:27.
-* @Content: ĞÂÔö.
+* @Description: EncodingDetectTest.java: ç¼–ç æ£€æµ‹æµ‹è¯•ç±».
+* @Author wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
+* @Date 2018å¹´8æœˆ3æ—¥ ä¸Šåˆ11:49:27.
+* @Content: æ–°å¢.
 * @Version: V1.0.
 */
 package io.github.bincool.test;
@@ -31,18 +31,18 @@ import io.github.bincool.test.base.BaseTest;
 * 
 * @Description: 
 * <p>
-* ±àÂë¼ì²â²âÊÔÀà.
+* ç¼–ç æ£€æµ‹æµ‹è¯•ç±».
 * </p>
 * <p>
-* ÏêÏ¸ÃèÊö.
+* è¯¦ç»†æè¿°.
 * </p>
 * <p>
-* Ê¾Àı´úÂë.
+* ç¤ºä¾‹ä»£ç .
 * </p>
 *
-* @Author: wchy£¬¼¼Êõ½»Á÷(891946049).
+* @Author: wchyï¼ŒæŠ€æœ¯äº¤æµ(891946049).
 * 
-* @Date: 2018Äê8ÔÂ3ÈÕ ÉÏÎç11:49:27.
+* @Date: 2018å¹´8æœˆ3æ—¥ ä¸Šåˆ11:49:27.
 * 
 */
 public class EncodingDetectTest extends BaseTest 
@@ -54,7 +54,7 @@ public class EncodingDetectTest extends BaseTest
 	private static final String URL = "http://www.runoob.com/index.html?language=cn#j2se";
 	
 	/**
-	 * ÎÄ¼şÂ·¾¶.
+	 * æ–‡ä»¶è·¯å¾„.
 	 */
 	private static final String FILE_PATH = System.getProperty("user.dir") + "\\file\\MakeRandCode.java";
 	
@@ -104,32 +104,30 @@ public class EncodingDetectTest extends BaseTest
 	}
 	
 	/**
-	 * ¶ÁÈ¡ÎÄ¼şÄÚÈİµ½byte[]ÖĞ.
+	 * è¯»å–æ–‡ä»¶å†…å®¹åˆ°byte[]ä¸­.
 	 * @param filename
-	 * 		ÎÄ¼şÃû.
+	 * 		æ–‡ä»¶å.
 	 * @return
 	 * @throws IOException
 	 */
 	public static byte[] toByteArray3(String filename) throws IOException 
 	{
-        try 
-        (
-        		FileChannel fc = new RandomAccessFile(filename, "r").getChannel()
-        ) 
-        {
-        	MappedByteBuffer byteBuffer = fc.map(MapMode.READ_ONLY, 0, fc.size()).load();
-            LOGGER.info(byteBuffer.isLoaded());
-            byte[] result = new byte[(int) fc.size()];
-            if (byteBuffer.remaining() > 0) 
-            {
-                byteBuffer.get(result, 0, byteBuffer.remaining());
-            }
-            return result;
-        } 
-        catch (IOException e) 
-        {
-			throw new IOException();
+		try (FileChannel fc = new RandomAccessFile(filename, "r").getChannel()) 
+		{
+			MappedByteBuffer byteBuffer = fc.map(MapMode.READ_ONLY, 0, fc.size()).load();
+			LOGGER.info(byteBuffer.isLoaded());
+			byte[] result = new byte[(int) fc.size()];
+			if (byteBuffer.remaining() > 0) 
+			{
+				byteBuffer.get(result, 0, byteBuffer.remaining());
+			}
+
+			return result;
 		} 
+		catch (IOException e) 
+		{
+			throw new IOException();
+		}
     }
 	
 }
