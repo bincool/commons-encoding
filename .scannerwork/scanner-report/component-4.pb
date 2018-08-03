@@ -1,1 +1,0 @@
-5io/github/bincool/encodingdetect/CharsetEncoding.java 2javaXþhr9src/io/github/bincool/encodingdetect/CharsetEncoding.java

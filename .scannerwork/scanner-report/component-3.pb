@@ -1,1 +1,0 @@
-<io/github/bincool/encodingdetect/EncodingDetectStrategy.java 2javaX[hr@src/io/github/bincool/encodingdetect/EncodingDetectStrategy.java
