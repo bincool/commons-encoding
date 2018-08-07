@@ -19,6 +19,7 @@
 		<!-- junit版本号 -->
 		<junit.version>4.11</junit.version>
 		<!-- log4j版本号 -->
+		<log4j2.version>2.6.2</log4j2.version>
 		<log4j.version>1.2.17</log4j.version>
 		<!-- cpdetector版本号 -->
 		<cpdetector.version>1.0.10</cpdetector.version>
@@ -40,12 +41,17 @@
 			<!-- <scope>test</scope> -->
 		</dependency>
 
-		<!-- log4j工具包 -->
+		<!-- log4j2工具包 -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
 		
 		<!-- cpdetector-begin -->
 		<dependency>
